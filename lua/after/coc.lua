@@ -139,12 +139,6 @@ keyset("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', o
 keyset("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
 
 
--- Use CTRL-S for selections ranges.
--- Requires 'textDocument/selectionRange' support of language server.
-keyset("n", "<C-s>", "<Plug>(coc-range-select)", {silent = true})
-keyset("x", "<C-s>", "<Plug>(coc-range-select)", {silent = true})
-
-
 -- Add `:Format` command to format current buffer.
 vim.api.nvim_create_user_command("Format", "call CocAction('format')", {})
 
@@ -158,24 +152,3 @@ vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'edito
 -- NOTE: Please see `:h coc-status` for integrations with external plugins that
 -- provide custom statusline: lightline.vim, vim-airline.
 vim.opt.statusline:prepend("%{coc#status()}%{get(b:,'coc_current_function','')}")
-
--- Mappings for CoCList
--- code actions and coc stuff
----@diagnostic disable-next-line: redefined-local
-local opts = {silent = true, nowait = true}
--- Show all diagnostics.
-keyset("n", "<space>a", ":<C-u>CocList diagnostics<cr>", opts)
--- Manage extensions.
-keyset("n", "<space>e", ":<C-u>CocList extensions<cr>", opts)
--- Show commands.
-keyset("n", "<space>c", ":<C-u>CocList commands<cr>", opts)
--- Find symbol of current document.
-keyset("n", "<space>o", ":<C-u>CocList outline<cr>", opts)
--- Search workspace symbols.
-keyset("n", "<space>s", ":<C-u>CocList -I symbols<cr>", opts)
--- Do default action for next item.
-keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
--- Do default action for previous item.
-keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
--- Resume latest coc list.
-keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
