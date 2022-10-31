@@ -10,5 +10,8 @@ wk.register({
 	},
 	c = {
 		name="LSP"
+	},
+	h = {
+		name="Harpoon"
 	}
 }, {prefix="<leader>"})

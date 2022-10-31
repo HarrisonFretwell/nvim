@@ -1,4 +1,13 @@
 local lspkind = require('lspkind')
+--Lspsaga
+local status, saga = pcall(require, "lspsaga")
+if (not status) then return end
+
+saga.init_lsp_saga {
+  server_filetype_map = {
+    typescript = 'typescript'
+  }
+}
 -- local lsp = require('lsp-zero')
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
@@ -38,6 +47,8 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
+	['<Tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -72,17 +83,8 @@ vim.cmd [[
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
-vim.keymap.set('i', '<C-f>', 'copilot#Accept("<CR>")', {expr=true, silent=true}) 
+vim.keymap.set('i', '<C-f>', 'copilot#Accept("<CR>")', {expr=true, silent=true, noremap=true}) 
 
---Lspsaga
-local status, saga = pcall(require, "lspsaga")
-if (not status) then return end
-
-saga.init_lsp_saga {
-  server_filetype_map = {
-    typescript = 'typescript'
-  }
-}
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
@@ -91,3 +93,7 @@ vim.keymap.set('i', '<C-i>', '<Cmd>Lspsaga signature_help<CR>', opts)
 vim.keymap.set('n', 'gp', '<Cmd>Lspsaga preview_definition<CR>', opts)
 vim.keymap.set('n', '<leader>cr', '<Cmd>Lspsaga rename<CR>', {desc="Rename"})
 vim.keymap.set('n', '<leader>ca', '<Cmd>Lspsaga code_action<CR>', {desc="Code action"})
+-- vim.keymap.set('n', '<leader>cd', '<Cmd>Lspsaga show_line_diagnostics<CR>', {desc="Show line diagnostics"})
+vim.keymap.set('n', '<leader>cd', '<Cmd>Lspsaga show_cursor_diagnostics<CR>', {desc="Show diagnostics at cursor"})
+vim.keymap.set('n', '<leader>cj', '<Cmd>Lspsaga diagnostic_jump_next<CR>', {desc="Next diagnostic"})
+vim.keymap.set('n', '<leader>ck', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', {desc="Prev diagnostic"})
