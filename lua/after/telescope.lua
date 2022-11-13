@@ -66,7 +66,7 @@ telescope.setup {
 }
 telescope.load_extension("file_browser")
 
-vim.keymap.set("n", "sf", function()
+vim.keymap.set("n", "<leader>sf", function()
   telescope.extensions.file_browser.file_browser({
     path = "%:p:h",
     cwd = telescope_buffer_dir(),
@@ -78,3 +78,16 @@ vim.keymap.set("n", "sf", function()
     layout_config = { height = 40 }
   })
 end)
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+
+local telescope = require("telescope")
+
+telescope.setup {
+  defaults = {
+    mappings = {
+      i = { ["<c-t>"] = trouble.open_with_trouble },
+      n = { ["<c-t>"] = trouble.open_with_trouble },
+    },
+  },
+}

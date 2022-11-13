@@ -13,5 +13,7 @@ wk.register({
 	},
 	h = {
 		name="Harpoon"
-	}
+	},
+    w = { "<C-w>", "Window" },
+
 }, {prefix="<leader>"})
