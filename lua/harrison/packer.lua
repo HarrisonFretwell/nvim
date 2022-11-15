@@ -118,12 +118,17 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use("tpope/vim-surround")
+	-- use({
+	-- 	"ggandor/leap.nvim",
+	-- 	config = function()
+	-- 		require("leap").add_default_mappings()
+	-- 	end,
+	-- })
 	use({
-		"ggandor/leap.nvim",
-		config = function()
-			require("leap").add_default_mappings()
-		end,
+		"https://gitlab.com/madyanov/svart.nvim",
+		as = "svart.nvim",
 	})
+
 	-- Prettier
 	use("MunifTanjim/prettier.nvim")
 

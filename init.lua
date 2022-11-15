@@ -9,6 +9,4 @@ require("after.telescope")
 require("after.harpoon")
 require("after.lualine")
 
-require('gitsigns').setup {}
-require("leap").add_default_mappings()
-
+require("gitsigns").setup({})
